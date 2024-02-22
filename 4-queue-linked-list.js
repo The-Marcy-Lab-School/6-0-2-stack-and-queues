@@ -5,53 +5,128 @@ class Node {
   }
 }
 
-class Queue {
+class LinkedList {
 
   #length = 0;
 
   constructor() {
-    this.head = null;
-    this.tail = null;
+      this.head = null;
+      this.tail = null;
   }
 
-  enqueue(value) {
-    const node = new Node(value);
-
-    if (this.isEmpty()) {
-      this.head = node;
-      this.tail = node;
-    } else {
-      this.tail.next = node;
-      this.tail = node;
-    }
-
-    this.#length++;
+  appendToTail(data) {
+      // add new Node with data to tail
+      const newNode = new Node(data);
+      this.#length++;
+      // 0 stack
+      if (!this.head && !this.tail) {
+          this.head = newNode;
+      }
+      else {
+          this.tail.next = newNode;
+      }
+      this.tail = newNode;
   }
 
-  dequeue() {
-    if (this.isEmpty()) return null;
+  prependToHead(data) {
+      // add new Node with data to head   
+      const newNode = new Node(data);
+      this.#length++;
 
-    const removed = this.head;
-    this.head = this.head.next;
+      // 0 stack
+      if (!this.head && !this.tail) {
+          this.tail = newNode;
+      }
+      else {
+          newNode.next = this.head;
+      }
+
+      this.head = newNode
+  }
+
+  removeHead() {
+    if (!this.head)  return
+
     this.#length--;
 
-    if (this.isEmpty()) {
-      this.tail = null;
+    if (this.head === this.tail) {
+        // Only one node in the list
+        const data = this.head.data;
+        this.head = null;
+        this.tail = null;
+        return data;
+    }
+  }
+
+  removeFromTail() {
+    if (!this.head)  return
+
+    this.#length--;
+
+    if (this.head === this.tail) {
+        // Only one node in the list
+        const data = this.head.data;
+        this.head = null;
+        this.tail = null;
+        return data;
     }
 
-    return removed.value;
+    let currentNode = this.head;
+    while (currentNode.next !== this.tail) {
+        currentNode = currentNode.next;
+    }
+
+    const data = this.tail.data;
+    currentNode.next = null;
+    this.tail = currentNode;
+    return data;
+    }
+
+  contains(data) {
+      // returns true is any Node in the LinkedList contains the value data, false otherwise
+      let currentNode = this.head;
+      while (currentNode) {
+          if (currentNode.data === data) {
+              return true;
+          }
+          currentNode = currentNode.next;
+      }
+      return false;
   }
 
-  peek() {
-    if (this.isEmpty()) return null;
-    return this.head.value;
+  length() {
+      //returns the length of the LinkedList as an integer value
+      /*
+      let currentNode = this.head;
+      let count = 0;
+      while(currentNode){ 
+          count++;
+          currentNode = currentNode.next;
+      }
+      return count;
+      */
+      return this.#length;
   }
 
-  isEmpty() {
-    return this.#length === 0;
+  print() {
+    let current = this.head, list="";
+    while(current) {
+      list += `${current.data} ->`
+      current = current.next;
+    }
+    return (list += 'null');
+  }
+}
+
+class Queue {
+
+  #queue = new LinkedList();
+
+  enqueue (data) {
+    this.#queue.appendToTail(data);
   }
 
-  getLength() {
-    return this.#length;
+  dequeue () {
+    this.#queue.removeHead();
   }
 }

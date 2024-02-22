@@ -38,7 +38,7 @@ const factorial = n => {
   return n * factorial(n - 1);
 }
 console.log('test');
-// debugger;
+debugger;
 
 // Add 
 add(1, 2); // 3
@@ -73,3 +73,7 @@ random(); // 0.40121212042219434
 factorial(5);
 // stack overflow;
 factorial(1000000);
+
+const newArray = new Array(5);
+
+const newArray2 = new Array(10);
