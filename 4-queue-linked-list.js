@@ -129,4 +129,6 @@ class Queue {
   dequeue () {
     this.#queue.removeHead();
   }
+
+  // add the rest based on what you know about linked lists
 }

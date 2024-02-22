@@ -59,49 +59,33 @@ class Stack {
 
 // Using a Linked List
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null; 
-  }
-}
+// *** linked list code ***
 
 class Stack {
+  #stack = new LinkedList();
 
-  #length = 0;
-
-  constructor() {
-    this.head = null;
-    
-  }
-
-  isEmpty() {
-    return this.#length === 0;
-  }
-
-  push(value) {
-    const node = new Node(value);
-    node.next = this.head;
-    this.head = node;
-    this.#length++;
+  push(data) {
+    this.#stack.appendToTail(data);
   }
 
   pop() {
-    if (this.isEmpty()) return null;
-
-    const removed = this.head;
-    this.head = this.head.next;
-    this.#length--;
-    return removed.value; 
+    return this.#stack.removeFromTail();
   }
 
   peek() {
-    if (this.isEmpty()) return null;
-    return this.head.value;
+    return this.#stack.tail;
   }
 
-  getLength() {
-    return this.#length;
+  isEmpty() {
+    return this.#stack.length() === 0;
+  }
+
+  getSize() {
+    return this.#stack.length();
+  }
+
+  print() {
+    this.#stack.print()
   }
 }
 ```
@@ -149,68 +133,26 @@ class Queue {
     return this.#values.length === 0;
   }
 
-  ge.#length() {
+  getLength() {
     return this.#values.length;
   }
 }
 
-// Linked List
+// using a Linked List
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
 
 class Queue {
 
-  #length = 0;
+  #queue = new LinkedList();
 
-  constructor() {
-    this.head = null;
-    this.tail = null;
+  enqueue (data) {
+    this.#queue.appendToTail(data);
   }
 
-  enqueue(value) {
-    const node = new Node(value);
-
-    if (this.isEmpty()) {
-      this.head = node;
-      this.tail = node;
-    } else {
-      this.tail.next = node;
-      this.tail = node;
-    }
-
-    this.#length++;
+  dequeue () {
+    this.#queue.removeHead();
   }
 
-  dequeue() {
-    if (this.isEmpty()) return null;
-
-    const removed = this.head;
-    this.head = this.head.next;
-    this.#length--;
-
-    if (this.isEmpty()) {
-      this.tail = null;
-    }
-
-    return removed.value;
-  }
-
-  peek() {
-    if (this.isEmpty()) return null;
-    return this.head.value;
-  }
-
-  isEmpty() {
-    return this.#length === 0;
-  }
-
-  getLength() {
-    return this.#length;
-  }
+  // add the rest based on what you know about linked lists
 }
 ```
