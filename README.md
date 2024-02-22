@@ -52,7 +52,7 @@ class Stack {
     return this.#values.length === 0;
   }
 
-  getSize() {
+  getLength() {
     return this.#values.length;
   }
 }
@@ -67,20 +67,23 @@ class Node {
 }
 
 class Stack {
+
+  #length = 0;
+
   constructor() {
     this.head = null;
-    this.size = 0;
+    
   }
 
   isEmpty() {
-    return this.size === 0;
+    return this.#length === 0;
   }
 
   push(value) {
     const node = new Node(value);
     node.next = this.head;
     this.head = node;
-    this.size++;
+    this.#length++;
   }
 
   pop() {
@@ -88,7 +91,7 @@ class Stack {
 
     const removed = this.head;
     this.head = this.head.next;
-    this.size--;
+    this.#length--;
     return removed.value; 
   }
 
@@ -97,8 +100,8 @@ class Stack {
     return this.head.value;
   }
 
-  getSize() {
-    return this.size;
+  getLength() {
+    return this.#length;
   }
 }
 ```
@@ -146,7 +149,7 @@ class Queue {
     return this.#values.length === 0;
   }
 
-  getSize() {
+  ge.#length() {
     return this.#values.length;
   }
 }
@@ -161,10 +164,12 @@ class Node {
 }
 
 class Queue {
+
+  #length = 0;
+
   constructor() {
     this.head = null;
     this.tail = null;
-    this.size = 0;
   }
 
   enqueue(value) {
@@ -178,7 +183,7 @@ class Queue {
       this.tail = node;
     }
 
-    this.size++;
+    this.#length++;
   }
 
   dequeue() {
@@ -186,7 +191,7 @@ class Queue {
 
     const removed = this.head;
     this.head = this.head.next;
-    this.size--;
+    this.#length--;
 
     if (this.isEmpty()) {
       this.tail = null;
@@ -201,11 +206,11 @@ class Queue {
   }
 
   isEmpty() {
-    return this.size === 0;
+    return this.#length === 0;
   }
 
-  getSize() {
-    return this.size;
+  getLength() {
+    return this.#length;
   }
 }
 ```

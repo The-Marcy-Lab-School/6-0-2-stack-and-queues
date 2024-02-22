@@ -6,10 +6,12 @@ class Node {
 }
 
 class Queue {
+
+  #length = 0;
+
   constructor() {
     this.head = null;
     this.tail = null;
-    this.size = 0;
   }
 
   enqueue(value) {
@@ -23,7 +25,7 @@ class Queue {
       this.tail = node;
     }
 
-    this.size++;
+    this.#length++;
   }
 
   dequeue() {
@@ -31,7 +33,7 @@ class Queue {
 
     const removed = this.head;
     this.head = this.head.next;
-    this.size--;
+    this.#length--;
 
     if (this.isEmpty()) {
       this.tail = null;
@@ -46,10 +48,10 @@ class Queue {
   }
 
   isEmpty() {
-    return this.size === 0;
+    return this.#length === 0;
   }
 
-  getSize() {
-    return this.size;
+  getLength() {
+    return this.#length;
   }
 }

@@ -6,20 +6,23 @@ class Node {
 }
 
 class Stack {
+
+  #length = 0;
+
   constructor() {
     this.head = null;
-    this.size = 0;
+    
   }
 
   isEmpty() {
-    return this.size === 0;
+    return this.#length === 0;
   }
 
   push(value) {
     const node = new Node(value);
     node.next = this.head;
     this.head = node;
-    this.size++;
+    this.#length++;
   }
 
   pop() {
@@ -27,7 +30,7 @@ class Stack {
 
     const removed = this.head;
     this.head = this.head.next;
-    this.size--;
+    this.#length--;
     return removed.value; 
   }
 
@@ -36,7 +39,7 @@ class Stack {
     return this.head.value;
   }
 
-  getSize() {
-    return this.size;
+  getLength() {
+    return this.#length;
   }
 }
